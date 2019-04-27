@@ -7,6 +7,8 @@
 
         <import type="android.view.View"/>
 
+        <import type="android.text.TextUtils"/>
+
         <variable
             name="model"
             type="ru.kulikovman.docsvisiontest.LoginFragment"/>
@@ -61,59 +63,88 @@
                     android:layout_marginBottom="10dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/server_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/server_address"/>
+                        android:hint="@string/server_address"
+                        android:singleLine="true"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <FrameLayout
+                    android:id="@+id/database_list_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:onClick="@{() -> model.databaseSelect()}"
+                    tools:visibility="visible">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
                         android:onClick="@{() -> model.databaseSelect()}"
-                        android:hint="@string/database"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:focusable="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/database_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{() -> model.databaseSelect()}"
+                            android:focusable="false"
+                            android:hint="@string/database"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </FrameLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/login_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/login"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/login"/>
+                        android:hint="@string/login"
+                        android:singleLine="true"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/password_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/password"/>
+                        android:hint="@string/password"
+                        android:singleLine="true"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
             <!-- Кнопка -->
             <Button
+                android:id="@+id/login_button"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/login_button"
-                android:text="@string/login_button_text"
                 android:onClick="@{() -> model.clickLoginButton()}"
-                android:textSize="18sp"/>
+                android:text="@string/login_button_text"
+                android:textSize="18sp"
+                android:visibility="gone"
+                tools:visibility="visible"/>
 
         </LinearLayout>
 

@@ -2,6 +2,9 @@ package ru.kulikovman.docsvisiontest;
 
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,18 +35,79 @@ public class LoginFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
+        initFields();
 
         binding.setModel(this);
     }
 
+    private void initFields() {
+        binding.login.addTextChangedListener(loginPasswordWatcher);
+        binding.password.addTextChangedListener(loginPasswordWatcher);
 
+        binding.serverAddress.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                binding.databaseListLayout.setVisibility(TextUtils.isEmpty(s) ? View.GONE : View.VISIBLE);
+            }
+        });
+    }
+
+    private TextWatcher loginPasswordWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            checkLoginPassword();
+        }
+    };
+
+    private void checkLoginPassword() {
+        boolean isEmpty = TextUtils.isEmpty(binding.login.getText()) || TextUtils.isEmpty(binding.password.getText());
+        binding.loginButton.setVisibility(isEmpty ? View.GONE : View.VISIBLE);
+    }
 
     public void databaseSelect() {
+        // Запустить получение списа баз данных
 
+        // Показать индикатор загрузки
+
+        // Скрыть индикатор загрузки
+
+        // Показать диалог со списком баз данных
+
+        // Сохранить имя выбранной базу в поле
+
+        binding.databaseList.setText("Выбранная база данных");
+
+        binding.loginLayout.setVisibility(View.VISIBLE);
+        binding.passwordLayout.setVisibility(View.VISIBLE);
     }
 
     public void clickLoginButton() {
+        // Отправляем запрос на сервер для аутентификации пользователя
+        // ...
 
+        // В зависимости от результата показать соответствующее сообщение
+        // ...
     }
+
+
 }
