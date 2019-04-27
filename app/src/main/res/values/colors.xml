@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="logo_color">#77ad3e</color>
+    <color name="element_color">#FFFFFF</color>
+
+    <color name="login_button_color">#f8bf00</color>
+    <color name="login_button_color_pressed">#B48C00</color>
+
+    <color name="login_background_start_color">#7eb359</color>
+    <color name="login_background_end_color">#174516</color>
+
+</resources>

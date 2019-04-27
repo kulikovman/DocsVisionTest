@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DocsVision Test</string>
+
+    <string name="logo_name">Docsvision</string>
+    <string name="server_address">Адрес сервера</string>
+    <string name="database">База данных</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="login_button_text">Войти</string>
+
+</resources>
