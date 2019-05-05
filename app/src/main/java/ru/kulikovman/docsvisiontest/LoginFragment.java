@@ -95,6 +95,8 @@ public class LoginFragment extends Fragment {
 
         // Сохранить имя выбранной базу в поле
 
+        viewModel.getListOfDatabases();
+
         binding.databaseList.setText("Выбранная база данных");
 
         binding.loginLayout.setVisibility(View.VISIBLE);

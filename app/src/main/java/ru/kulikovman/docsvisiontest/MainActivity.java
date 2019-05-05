@@ -1,6 +1,7 @@
 package ru.kulikovman.docsvisiontest;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 

@@ -5,6 +5,7 @@ import android.content.Context;
 
 import ru.kulikovman.docsvisiontest.di.AppComponent;
 import ru.kulikovman.docsvisiontest.di.DaggerAppComponent;
+import ru.kulikovman.docsvisiontest.di.module.ContextModule;
 
 
 public class App extends Application {
@@ -18,8 +19,10 @@ public class App extends Application {
         super.onCreate();
         instance = this;
 
-        // Подключение Dagger
-        component = DaggerAppComponent.create();
+        // Подключаем Dagger
+        component = DaggerAppComponent.builder()
+                .contextModule(new ContextModule(getApplicationContext()))
+                .build();
     }
 
     public static App getInstance() {
@@ -33,5 +36,4 @@ public class App extends Application {
     public static AppComponent getComponent() {
         return component;
     }
-
 }

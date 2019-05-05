@@ -70,31 +70,24 @@
                         android:singleLine="true"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <FrameLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/database_list_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:focusable="false"
                     android:visibility="gone"
-                    android:onClick="@{() -> model.databaseSelect()}"
                     tools:visibility="visible">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/database_list"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="10dp"
-                        android:onClick="@{() -> model.databaseSelect()}"
-                        android:focusable="false">
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:hint="@string/database"
+                        android:onClick="@{() -> model.databaseSelect()}"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/database_list"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:onClick="@{() -> model.databaseSelect()}"
-                            android:focusable="false"
-                            android:hint="@string/database"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </FrameLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/login_layout"
