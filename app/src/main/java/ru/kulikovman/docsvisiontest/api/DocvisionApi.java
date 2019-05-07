@@ -10,9 +10,9 @@ import ru.kulikovman.docsvisiontest.model.SyncMessage;
 
 public interface DocvisionApi {
 
-    @POST("Api/SyncMessage/PostMessage")
-    Call<SyncMessage> requestDatabaseList(@Body SyncMessage syncMessage);
+    @POST("SyncMessage/PostMessage")
+    Call<SyncMessage> requestDatabases(@Body SyncMessage syncMessage);
 
-    @POST("Api/SyncMessage/GetMessages/")
-    Call<List<SyncMessage>> getDatabaseList(@Body GetMessageRequestModel getMessageRequestModel);
+    @POST("SyncMessage/GetMessages")
+    Call<List<SyncMessage>> getDatabases(@Body GetMessageRequestModel getMessageRequestModel);
 }

@@ -5,31 +5,31 @@ import java.util.UUID;
 
 public class GetMessageRequestModel {
 
-    private List<UUID> receivedMessageIds;
-    private UUID requestId;
-    private SessionToken sessionToken;
+    private List<UUID> ReceivedMessageIds;
+    private UUID RequestId;
+    private SessionToken SessionToken;
 
     public List<UUID> getReceivedMessageIds() {
-        return receivedMessageIds;
+        return ReceivedMessageIds;
     }
 
     public void setReceivedMessageIds(List<UUID> receivedMessageIds) {
-        this.receivedMessageIds = receivedMessageIds;
+        ReceivedMessageIds = receivedMessageIds;
     }
 
     public UUID getRequestId() {
-        return requestId;
+        return RequestId;
     }
 
     public void setRequestId(UUID requestId) {
-        this.requestId = requestId;
+        RequestId = requestId;
     }
 
-    public SessionToken getSessionToken() {
-        return sessionToken;
+    public ru.kulikovman.docsvisiontest.model.SessionToken getSessionToken() {
+        return SessionToken;
     }
 
-    public void setSessionToken(SessionToken sessionToken) {
-        this.sessionToken = sessionToken;
+    public void setSessionToken(ru.kulikovman.docsvisiontest.model.SessionToken sessionToken) {
+        SessionToken = sessionToken;
     }
 }

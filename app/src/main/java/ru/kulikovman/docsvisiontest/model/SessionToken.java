@@ -4,22 +4,22 @@ import java.util.UUID;
 
 public class SessionToken {
 
-    private UUID employeeId;
-    private UUID tenantId;
+    private UUID EmployeeId;
+    private UUID TenantId;
 
     public UUID getEmployeeId() {
-        return employeeId;
+        return EmployeeId;
     }
 
     public void setEmployeeId(UUID employeeId) {
-        this.employeeId = employeeId;
+        EmployeeId = employeeId;
     }
 
     public UUID getTenantId() {
-        return tenantId;
+        return TenantId;
     }
 
     public void setTenantId(UUID tenantId) {
-        this.tenantId = tenantId;
+        TenantId = tenantId;
     }
 }

@@ -4,50 +4,58 @@ import java.util.UUID;
 
 public class SyncMessage {
 
-    private UUID id;
-    private String message;
-    private String messageType;
-    private UUID requestId;
-    private SessionToken sessionToken;
-    private long settingsHash;
+    private UUID Id;
+    private UUID RequestId;
+    private String MessageType;
+    private String Message;
+    private long SettingsHash;
+    private SessionToken SessionToken;
 
     public UUID getId() {
-        return id;
+        return Id;
     }
 
     public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getMessageType() {
-        return messageType;
-    }
-
-    public void setMessageType(String messageType) {
-        this.messageType = messageType;
+        Id = id;
     }
 
     public UUID getRequestId() {
-        return requestId;
+        return RequestId;
     }
 
     public void setRequestId(UUID requestId) {
-        this.requestId = requestId;
+        RequestId = requestId;
+    }
+
+    public String getMessageType() {
+        return MessageType;
+    }
+
+    public void setMessageType(String messageType) {
+        MessageType = messageType;
+    }
+
+    public String getMessage() {
+        return Message;
+    }
+
+    public void setMessage(String message) {
+        Message = message;
     }
 
     public long getSettingsHash() {
-        return settingsHash;
+        return SettingsHash;
     }
 
     public void setSettingsHash(long settingsHash) {
-        this.settingsHash = settingsHash;
+        SettingsHash = settingsHash;
+    }
+
+    public ru.kulikovman.docsvisiontest.model.SessionToken getSessionToken() {
+        return SessionToken;
+    }
+
+    public void setSessionToken(ru.kulikovman.docsvisiontest.model.SessionToken sessionToken) {
+        SessionToken = sessionToken;
     }
 }
