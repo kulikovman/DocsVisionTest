@@ -8,6 +8,8 @@ import com.google.gson.Gson;
 import java.util.List;
 import java.util.UUID;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,14 +30,58 @@ public class DataRepository {
         api = docvisionApi;
     }
 
-    public List<DatabaseInfo> getListOfDatabases() {
+    public LiveData<List<DatabaseInfo>> getListOfDatabases() {
+        final MutableLiveData<List<DatabaseInfo>> data = new MutableLiveData<>();
 
+        DatabasesRequest request = new DatabasesRequest();
+        final UUID requestId = UUID.randomUUID();
 
+        SyncMessage message = new SyncMessage();
+        message.setId(requestId);
+        message.setRequestId(requestId);
+        message.setMessageType(KnownMessageTypes.DATABASES_REQUEST);
+        message.setMessage(new Gson().toJson(request));
 
-        sendDatabasesRequest();
+        // Запрос на получение списка баз данных
+        api.requestDatabases(message).enqueue(new Callback<SyncMessage>() {
+            @Override
+            public void onResponse(Call<SyncMessage> call, Response<SyncMessage> response) {
+                GetMessageRequestModel messageRequestModel = new GetMessageRequestModel();
+                messageRequestModel.setRequestId(requestId);
 
+                // Получение списка баз данных
+                api.getDatabases(messageRequestModel).enqueue(new Callback<List<SyncMessage>>() {
+                    @Override
+                    public void onResponse(Call<List<SyncMessage>> call, Response<List<SyncMessage>> response) {
+                        List<SyncMessage> messages = response.body();
+                        if (messages != null && messages.size() > 0) {
+                            SyncMessage message = messages.get(0);
+                            if (message.getMessageType().equals(KnownMessageTypes.DATABASES_RESPONSE)) {
+                                DatabasesResponse databasesResponse = new Gson().fromJson(message.getMessage(), DatabasesResponse.class);
+                                data.setValue(databasesResponse.getDatabases());
+                            } else {
+                                Log.d("myLog", "Пришел неверный ответ");
+                            }
+                        } else {
+                            // Если список пустой, то получаем повторно
+                            getDatabasesAfterPause(requestId);
+                        }
+                    }
 
-        return null;
+                    @Override
+                    public void onFailure(Call<List<SyncMessage>> call, Throwable t) {
+                        Log.d("myLog", "Ошибка при getDatabases / Throwable: " + t.getMessage());
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<SyncMessage> call, Throwable t) {
+                Log.d("myLog", "Ошибка при requestDatabases / Throwable: " + t.getMessage());
+            }
+        });
+
+        return data;
     }
 
 
@@ -44,7 +90,7 @@ public class DataRepository {
 
 
 
-    private void sendDatabasesRequest() {
+    public void sendDatabasesRequest() {
         DatabasesRequest request = new DatabasesRequest();
         final UUID requestId = UUID.randomUUID();
 
